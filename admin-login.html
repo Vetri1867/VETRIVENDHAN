@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMR Scheduler - Admin Login</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="dark">
+    <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+        <!-- Animated Background - Red theme for admin -->
+        <div class="fixed inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-red-600/20 rounded-full blur-3xl animate-blob"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-orange-600/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+
+        <!-- Admin Login Card -->
+        <div class="relative z-10 w-full max-w-md">
+            <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 animate-slide-in-up">
+                <!-- Logo -->
+                <div class="flex justify-center mb-8">
+                    <img src="assets/omr-loading.gif" alt="OMR Logo" class="h-16">
+                </div>
+
+                <h1 class="text-2xl font-bold text-white text-center mb-2">Admin Portal</h1>
+                <p class="text-slate-400 text-center mb-8">Administrator Access</p>
+
+                <!-- Security Badge -->
+                <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-3 mb-6 text-center">
+                    <p class="text-red-400 text-sm font-semibold">🔒 Secure Admin Area</p>
+                </div>
+
+                <form id="adminLoginForm" class="space-y-4">
+                    <!-- Email Field -->
+                    <div class="form-group">
+                        <label for="email" class="block text-sm font-medium text-slate-300 mb-2">
+                            Admin Email
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="admin@example.com"
+                            required
+                            class="form-input"
+                        >
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <label for="password" class="block text-sm font-medium text-slate-300 mb-2">
+                            Admin Password
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="••••••••"
+                            required
+                            class="form-input"
+                        >
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-danger w-full mt-6">
+                        Admin Login
+                    </button>
+
+                    <!-- Form Message -->
+                    <div id="formMessage" class="mt-4 p-4 rounded-lg hidden"></div>
+                </form>
+
+                <!-- Footer Links -->
+                <div class="mt-8 pt-8 border-t border-slate-700 space-y-3">
+                    <p class="text-slate-400 text-sm text-center">
+                        User Account? 
+                        <a href="login.html" class="text-blue-400 hover:text-blue-300">Sign in here</a>
+                    </p>
+                    <p class="text-slate-500 text-xs text-center">
+                        <a href="index.html" class="hover:text-slate-400">← Back to Home</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

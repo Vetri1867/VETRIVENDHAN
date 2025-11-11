@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMR Scheduler - Dashboard</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body class="dark">
+    <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <!-- Hamburger Menu Button for Mobile -->
+        <button id="menuToggle" class="fixed top-4 left-4 z-50 md:hidden btn btn-secondary" title="Toggle Menu">
+            ☰
+        </button>
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-slate-800/50 backdrop-blur-xl border-r border-slate-700/50 p-6 flex flex-col animate-slide-in-down md:flex hidden">
+            <div class="flex items-center gap-3 mb-8">
+                <img src="assets/omr-loading.gif" alt="OMR Logo" class="h-10">
+                <h1 class="text-xl font-bold text-white">OMR</h1>
+            </div>
+
+            <nav class="space-y-2 flex-1">
+                <a href="#dashboard" class="nav-link active">Dashboard</a>
+                <a href="#schedules" class="nav-link">Schedules</a>
+                <a href="#exams" class="nav-link">Exams</a>
+                <a href="#results" class="nav-link">Results</a>
+                <a href="#reminders" class="nav-link">Reminders</a>
+                <a href="#settings" class="nav-link">Settings</a>
+            </nav>
+
+            <button onclick="logout()" class="btn btn-outline w-full">
+                Logout
+            </button>
+        </div>
+
+        <!-- Mobile Overlay -->
+        <div id="mobileOverlay" class="fixed inset-0 bg-black/50 hidden md:hidden z-40" onclick="closeMobileMenu()"></div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="md:ml-64 p-4 md:p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8 animate-slide-in-down">
+                <div>
+                    <h1 class="text-3xl font-bold text-white">Dashboard</h1>
+                    <p class="text-slate-400">Welcome back to OMR Scheduler</p>
+                </div>
+                <button id="themeToggle" class="btn btn-secondary hidden md:block">
+                    🌙 Dark Mode
+                </button>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <!-- Stat Card 1 -->
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-6 animate-scale-in" style="animation-delay: 0.1s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-slate-400 text-sm">Total Exams</p>
+                            <p class="text-3xl font-bold text-white">24</p>
+                        </div>
+                        <div class="text-4xl">📋</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 2 -->
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-6 animate-scale-in" style="animation-delay: 0.2s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-slate-400 text-sm">Scheduled</p>
+                            <p class="text-3xl font-bold text-white">8</p>
+                        </div>
+                        <div class="text-4xl">🗓️</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 3 -->
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-6 animate-scale-in" style="animation-delay: 0.3s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-slate-400 text-sm">Completed</p>
+                            <p class="text-3xl font-bold text-white">16</p>
+                        </div>
+                        <div class="text-4xl">✅</div>
+                    </div>
+                </div>
+
+                <!-- Stat Card 4 -->
+                <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-6 animate-scale-in" style="animation-delay: 0.4s">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-slate-400 text-sm">Pending</p>
+                            <p class="text-3xl font-bold text-white">5</p>
+                        </div>
+                        <div class="text-4xl">⏳</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-lg p-6 mb-8 animate-slide-in-up">
+                <h2 class="text-xl font-bold text-white mb-4">Upcoming Events</h2>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition">
+                        <div>
+                            <p class="text-white font-medium">Mathematics Final Exam</p>
+                            <p class="text-slate-400 text-sm">Dec 15, 2024 - 10:00 AM</p>
+                        </div>
+                        <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm">In 3 days</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition">
+                        <div>
+                            <p class="text-white font-medium">Physics Midterm</p>
+                            <p class="text-slate-400 text-sm">Dec 20, 2024 - 2:00 PM</p>
+                        </div>
+                        <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm">In 8 days</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition">
+                        <div>
+                            <p class="text-white font-medium">Chemistry Quiz</p>
+                            <p class="text-slate-400 text-sm">Dec 18, 2024 - 11:30 AM</p>
+                        </div>
+                        <span class="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">In 6 days</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 animate-slide-in-up" style="animation-delay: 0.2s">
+                <button class="btn btn-primary">
+                    + Schedule New Exam
+                </button>
+                <button class="btn btn-secondary">
+                    View Results
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add reminders modal/section -->
+    <div id="remindersModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-800 rounded-lg max-w-md w-full p-6 animate-scale-in">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-white">Setup Reminders</h2>
+                <button onclick="closeRemindersModal()" class="text-slate-400 hover:text-white text-2xl">×</button>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- Email Reminder -->
+                <div class="border border-slate-700 rounded-lg p-4">
+                    <label class="flex items-center cursor-pointer">
+                        <input type="checkbox" id="emailReminder" class="w-4 h-4" onchange="toggleEmailReminder()">
+                        <span class="ml-3 text-white font-medium">Email Reminder</span>
+                    </label>
+                    <p class="text-slate-400 text-sm mt-2">Receive meeting reminders via email (SendGrid)</p>
+                </div>
+
+                <!-- SMS Reminder -->
+                <div class="border border-slate-700 rounded-lg p-4">
+                    <label class="flex items-center cursor-pointer">
+                        <input type="checkbox" id="smsReminder" class="w-4 h-4" onchange="toggleSmsReminder()">
+                        <span class="ml-3 text-white font-medium">SMS Reminder</span>
+                    </label>
+                    <p class="text-slate-400 text-sm mt-2">Get text message alerts before exams (Twilio)</p>
+                    <input type="tel" id="phoneNumber" placeholder="+1234567890" class="form-input mt-2" style="display:none;">
+                </div>
+
+                <!-- Push Notification -->
+                <div class="border border-slate-700 rounded-lg p-4">
+                    <label class="flex items-center cursor-pointer">
+                        <input type="checkbox" id="pushReminder" class="w-4 h-4" onchange="togglePushReminder()">
+                        <span class="ml-3 text-white font-medium">Push Notification</span>
+                    </label>
+                    <p class="text-slate-400 text-sm mt-2">Browser notifications (Firebase FCM)</p>
+                </div>
+            </div>
+
+            <button onclick="saveReminders()" class="btn btn-primary w-full mt-6">
+                Save Preferences
+            </button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <!-- Add reminders script -->
+    <script src="js/reminders.js"></script>
+</body>
+</html>
